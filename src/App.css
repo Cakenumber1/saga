@@ -1,38 +1,201 @@
 .App {
+  position: relative;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Loader {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+
+  border: 3px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 3px solid #3498db;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.Error-container {
+  position: fixed;
+  right: 5%;
+  bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 350px;
+  width: 250px;
+
+  pointer-events: none;
+}
+
+.Error-container > div:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.Error-container button {
+  cursor: pointer;
+
+  pointer-events: all;
+}
+
+.Error-card {
+  position: relative;
+  box-sizing: border-box;
+  width: 250px;
+  height: 90px;
+  padding: 12px;
+
+  opacity:1;
+
+  background-color: #C8102E;
+
+  font-size: 16px;
+}
+
+.Error-closeBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  border: none;
+
+  color: white;
+  background: none;
+
+  font-size: 18px;
+}
+
+.Error-closeBtn:hover {
+  color: #282c34;
+}
+
+.Error-closeAllBtn__hidden {
+  visibility: hidden
+}
+
+nav {
+  width: 100%;
+  padding: 20px;
+}
+
+/* Make nav menu items take full width allocated */
+.navMenu ul {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navMenu li {
+  list-style: none;
+}
+
+.navMenu li > * {
+  border: none;
+
+  background: none;
+  color: #551A8B;
+
+  text-decoration: none;
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: 500;
+
+  cursor: pointer;
+
+}
+
+.navMenu li:hover > * {
+  color: blue;
+}
+
+/* Styles for the hamburger menu icon */
+#hamburger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+#hamburger div {
+  width: 22px;
+  height: 2px;
+  background-color: black;
+  margin: 4px 0;
+  transition: 0.5s;
+}
+
+#hamburger {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  #hamburger {
+    display: block;
   }
-  to {
-    transform: rotate(360deg);
+
+  .navMenu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    transform: translateX(100%);
+    transition: 0.5s;
+  }
+
+  .navMenu ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+  }
+
+  .navMenu li {
+    color: white;
+    padding: 15px 0;
   }
 }
+
+/* Extra utility classes to be added with JS */
+
+.nav-active {
+  transform: translateX(0);
+}
+
+#hamburger.toggle div {
+  background-color: white;
+}
+
+.toggle #bar1 {
+  transform: rotate(-45deg) translate(-5px, 4px);
+}
+
+.toggle #bar2 {
+  opacity: 0;
+}
+
+.toggle #bar3 {
+  transform: rotate(45deg) translate(-5px, -4px);
+}
+
+

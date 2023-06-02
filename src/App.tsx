@@ -1,30 +1,24 @@
-import React, {useEffect} from 'react';
-import logo from './logo.svg';
+import React, {FunctionComponent, useEffect} from 'react';
 import './App.css';
-import Login from "./pages/Login";
+import Errors from "./modules/errors/ErrorsContainer";
+import Loader from "./modules/loader/LoaderContainer";
+import Routes from "./modules/routing/RoutesContainer";
+import Nav from "./modules/navigation/NavContainer";
 
-function App() {
-  useEffect(() => {
-    fetch('https://dummyjson.com/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
 
-        username: 'kminchelle',
-        password: '0lelplR',
-        // expiresInMins: 60, // optional
-      })
-    })
-        .then(res => res.json())
-        .then(console.log);
-  })
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Login />
-      </header>
-    </div>
-  );
+const App: FunctionComponent = () => {
+    useEffect(() => {
+        // todo: request for login if token in cookies
+        console.log('request for login if token in cookies')
+    }, [])
+    return (
+        <div className="App">
+            <Nav />
+            <Loader/>
+            <Errors />
+            <Routes />
+        </div>
+    );
 }
 
 export default App;

@@ -1,70 +1,25 @@
-import {
-    LOGIN_REQUEST,
-    LOGIN_SUCCESS,
-    LOGIN_FAILURE,
-    SIGNUP_REQUEST,
-    SIGNUP_SUCCESS,
-    SIGNUP_FAILURE,
-} from './actionTypes'
+import * as actions from "./actionTypes";
 
-import {IAuthActions, IAuthState} from './types'
-
-const initialState: IAuthState = {
-    pending: false,
-    token: '',
-    error: null,
+export interface AuthState {
+    token: string;
 }
 
-const reducers = (state = initialState, action: IAuthActions) => {
+const initialState: AuthState = {
+    token: '',
+}
+
+const reducers = (state = initialState, action: actions.AuthAction) => {
     switch(action.type) {
-        case SIGNUP_REQUEST: {
+        case actions.GET_AUTH_SUCCESS:
             return {
-                ...state,
-                pending: true
+                token: action.token,
             }
-        }
-        case SIGNUP_FAILURE: {
+        case actions.LOGOUT:
             return {
-                ...state,
-                pending: false,
-                token: '',
-                error: action.payload.error
+                token: ''
             }
-        }
-        case SIGNUP_SUCCESS: {
-            return {
-                ...state,
-                pending: false,
-                token: action.payload.token,
-                error: null
-            }
-        }
-        case LOGIN_REQUEST: {
-            return {
-                ...state,
-                pending: true
-            }
-        }
-        case LOGIN_FAILURE: {
-            return {
-                ...state,
-                pending: false,
-                token: '',
-                error: action.payload.error
-            }
-        }
-        case LOGIN_SUCCESS: {
-            return {
-                ...state,
-                pending: false,
-                token: action.payload.token,
-                error: null
-            }
-        }
         default:
-            return {
-                ...state
-            }
+            return state
     }
 }
 

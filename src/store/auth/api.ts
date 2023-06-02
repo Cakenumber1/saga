@@ -1,25 +1,19 @@
 import axios from "axios";
-import {IAuth} from "./types";
+import AuthType from "./enum";
 
-export const login = async (paylaod: {email: string, password: string}) => {
-    const {data} = await axios.post<IAuth>(
-        "https://reqres.in/api/login",
-        {email: paylaod.email, password: paylaod.password},
-        {
-            headers: {
-                "Contentp-Type" : "application/json",
-                Accept: 'application/json'
-            }
-        }
-    )
 
-    return data
+interface AuthResponse {
+    token: string
 }
 
-export const signup = async (paylaod: {email: string, password: string}) => {
-    const {data} = await axios.post<IAuth>(
-        "https://reqres.in/api/login",
-        {...paylaod},
+export async function auth (
+    email: string,
+    password: string,
+    authType: AuthType
+): Promise<AuthResponse> {
+    const {data} = await axios.post<AuthResponse>(
+        `https://reqres.in/api/${authType}`,
+        {email: email, password: password},
         {
             headers: {
                 "Contentp-Type" : "application/json",
@@ -27,6 +21,5 @@ export const signup = async (paylaod: {email: string, password: string}) => {
             }
         }
     )
-
     return data
 }

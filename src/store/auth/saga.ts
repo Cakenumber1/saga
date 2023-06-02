@@ -1,65 +1,25 @@
-import {all, call, put, takeLatest} from 'redux-saga/effects'
+import {all, call, fork, put, takeLatest} from 'redux-saga/effects'
 
-import {
-    loginSuccess,
-    loginFailure,
-    signupSuccess,
-    signupFailure
-} from "./actions";
+import {auth} from "./api";
+import * as actionCreators from "./actionCreators";
+import * as actionTypes from "./actionTypes";
 
-import {LOGIN_REQUEST, SIGNUP_REQUEST} from "./actionTypes";
-
-import {login, signup} from "./api";
-
-function* loginSaga(action: any) {
+function* onAuthSaga({ email, password, authType }: actionTypes.GetAuthAction) {
     try {
-        const response:{token:string} = yield call(login, {
-            email: action.payload.values.email,
-            password: action.payload.values.password,
-        })
-
-        yield put(
-            loginSuccess({
-                token: response.token
-            })
-        )
-
-        action.payload.callback(response.token)
-    } catch (e: any) {
-        yield put (
-            loginFailure({
-                error: e.error
-            })
-        )
+        yield put(actionCreators.getAuthRequest());
+        const { token } = yield call(auth, email, password, authType);
+        yield put(actionCreators.getAuthSuccess(token));
+    } catch (error: any) {
+        yield put(actionCreators.getAuthFailure(error.response.data.error));
     }
 }
 
-function* signupSaga(action: any) {
-    try {
-        const response:{token:string} = yield call(signup, {
-            email: action.payload.values.email,
-            password: action.payload.values.password,
-        })
-
-        yield put(
-            signupSuccess({
-                token: response.token
-            })
-        )
-
-        action.payload.callback(response.token)
-    } catch (e: any) {
-        yield put (
-            signupFailure({
-                error: e.error
-            })
-        )
-    }
+function* watchAuth() {
+    yield takeLatest(actionTypes.GET_AUTH, onAuthSaga)
 }
 
-function* authSaga(){
-    yield all([takeLatest(LOGIN_REQUEST, loginSaga)])
-    yield all([takeLatest(SIGNUP_REQUEST, signupSaga)])
+export default function* authSaga(){
+    yield all([
+        fork(watchAuth),
+    ])
 }
-
-export default authSaga
