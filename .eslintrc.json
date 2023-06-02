@@ -26,8 +26,9 @@
         ],
         "react/require-default-props": 0,
         "react/display-name": 0,
-        "default-param-last": 1,
+        "@typescript-eslint/default-param-last": 0,
         "import/prefer-default-export": 1,
-        "@typescript-eslint/no-shadow": 1
+        "@typescript-eslint/no-shadow": 1,
+        "jsx-a11y/label-has-associated-control" : 0
     }
 }

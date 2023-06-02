@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import AuthType from '@store/auth/enum';
+import AuthType from '../../store/auth/enum';
 
 interface Props {
   onAuth(email: string, password: string, authType: AuthType): void;

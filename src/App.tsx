@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import './App.css';
-import Errors from '@modules/errors/ErrorsContainer';
-import Loader from '@modules/loader/LoaderContainer';
-import Routes from '@modules/routing/RoutesContainer';
-import Nav from '@modules/navigation/NavContainer';
+import Errors from './modules/errors/ErrorsContainer';
+import Loader from './modules/loader/LoaderContainer';
+import Routes from './modules/routing/RoutesContainer';
+import Nav from './modules/navigation/NavContainer';
 
 const App: FunctionComponent = () => {
   useEffect(() => {

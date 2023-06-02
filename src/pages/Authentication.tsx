@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 
 import Auth from '../modules/auth/AuthContainer';
 
-const Authentication: FunctionComponent = (props) => (
+const Authentication: FunctionComponent = () => (
   <div>
     <Auth />
   </div>

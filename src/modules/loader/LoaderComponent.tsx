@@ -11,6 +11,8 @@ const LoaderComponent: FunctionComponent<Props> = ({
   if (showLoading) {
     return (<div className="Loader" />);
   }
+
+  return null;
 };
 
 export default LoaderComponent;
