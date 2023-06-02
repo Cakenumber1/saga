@@ -1,6 +1,6 @@
 enum AuthType {
-    Login = 'Login',
-    Register = 'Register',
+  Login = 'Login',
+  Register = 'Register',
 }
 
-export  default AuthType
+export default AuthType;

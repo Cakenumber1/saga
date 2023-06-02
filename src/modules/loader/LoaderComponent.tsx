@@ -1,16 +1,16 @@
-import React, {FunctionComponent} from "react";
+import React, { FunctionComponent } from 'react';
 
 interface Props {
-    isLoading: { [key: string]: boolean; }
+  isLoading: { [key: string]: boolean; }
 }
 const LoaderComponent: FunctionComponent<Props> = ({
-    isLoading
+  isLoading,
 }) => {
-    const showLoading = Object.values(isLoading).some((val) => val)
+  const showLoading = Object.values(isLoading).some((val) => val);
 
-    if (showLoading) {
-        return (<div className="Loader"/>)
-    }
+  if (showLoading) {
+    return (<div className="Loader" />);
+  }
 };
 
 export default LoaderComponent;

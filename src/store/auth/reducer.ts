@@ -1,26 +1,26 @@
-import * as actions from "./actionTypes";
+import * as actions from './actionTypes';
 
 export interface AuthState {
-    token: string;
+  token: string;
 }
 
 const initialState: AuthState = {
-    token: '',
-}
+  token: '',
+};
 
 const reducers = (state = initialState, action: actions.AuthAction) => {
-    switch(action.type) {
-        case actions.GET_AUTH_SUCCESS:
-            return {
-                token: action.token,
-            }
-        case actions.LOGOUT:
-            return {
-                token: ''
-            }
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case actions.GET_AUTH_SUCCESS:
+      return {
+        token: action.token,
+      };
+    case actions.LOGOUT:
+      return {
+        token: '',
+      };
+    default:
+      return state;
+  }
+};
 
-export default reducers
+export default reducers;

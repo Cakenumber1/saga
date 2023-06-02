@@ -1,12 +1,9 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent } from 'react';
 
 interface Props {
-    lyrics: string;
+  lyrics: string;
 }
 
-const LyricsComponent: FunctionComponent<Props> = ({ lyrics}) => {
-
-    return <div>{lyrics}</div>;
-};
+const LyricsComponent: FunctionComponent<Props> = ({ lyrics }) => <div>{lyrics}</div>;
 
 export default LyricsComponent;
